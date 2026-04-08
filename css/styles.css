@@ -1,81 +1,47 @@
 body {
-    background-color: #f3f4f6;
-    font-family: sans-serif;
+    @apply bg-gray-100 font-sans;
 }
 
 header {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    @apply bg-white shadow-md p-4;
 }
 
 main {
-    padding: 1rem;
+    @apply p-4;
 }
 
 .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem;
+    @apply fixed bottom-0 left-0 right-0 bg-white shadow-md flex justify-around p-2;
 }
 
 .bottom-nav li {
-    cursor: pointer;
-    text-align: center;
+    @apply cursor-pointer text-center text-gray-600 hover:text-blue-500;
 }
 
 .home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
+    @apply flex flex-col items-center justify-center h-screen;
 }
 
 .home-content h1 {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    @apply text-4xl font-bold mb-4;
 }
 
 .home-content p {
-    font-size: 1.125rem;
+    @apply text-lg;
 }
 
 .profile-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+    @apply flex flex-col items-center p-4;
 }
 
 .profile-photo {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    margin: 0 auto;
+    @apply w-24 h-24 rounded-full mx-auto;
 }
 
 .profile-name {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
+    @apply text-center text-xl font-semibold mt-2;
 }
 
 .edit-profile {
-    display: block;
-    margin: 1rem auto 0;
-    background-color: #3b82f6;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    border: none;
-    cursor: pointer;
+    @apply block mx-auto mt-4 bg-blue-500 text-white py-2 px-4 rounded;
 }
