@@ -65,7 +65,7 @@ header {
 }
 
 header::before {
-    content: '🌸 🌺 🌼 🌷 🌸 🌺 🌼';
+    content: '� 🍔 🍟 🌮 🍕 🍔 🍟';
     position: absolute;
     top: 2px;
     right: 10px;
@@ -140,7 +140,7 @@ main::before {
 }
 
 .feature-box::before {
-    content: '🌸';
+    content: '🍕';
     position: absolute;
     font-size: 60px;
     opacity: 0.1;
@@ -149,7 +149,7 @@ main::before {
 }
 
 .feature-box::after {
-    content: '🌺';
+    content: '🍔';
     position: absolute;
     font-size: 50px;
     opacity: 0.1;
@@ -173,7 +173,7 @@ main::before {
 }
 
 .card::before {
-    content: '🌼';
+    content: '🍟';
     position: absolute;
     font-size: 40px;
     opacity: 0.08;
@@ -182,7 +182,7 @@ main::before {
 }
 
 .card::after {
-    content: '🌷';
+    content: '🌮';
     position: absolute;
     font-size: 35px;
     opacity: 0.08;
@@ -227,7 +227,7 @@ main::before {
 }
 
 .profile-info-box::before {
-    content: '🌺';
+    content: '🍕';
     position: absolute;
     font-size: 30px;
     opacity: 0.1;

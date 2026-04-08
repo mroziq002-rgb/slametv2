@@ -1,7 +1,7 @@
 function renderProduk(container) {
     const produkHTML = `
         <div class="p-4">
-            <h1 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent" style="animation: fadeInDown 0.8s ease-out;">🌺 Daftar Produk 🌺</h1>
+            <h1 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent" style="animation: fadeInDown 0.8s ease-out;">🍟 Daftar Produk 🍟</h1>
             <div class="space-y-4" id="produk-list"></div>
         </div>
     `;
@@ -16,7 +16,7 @@ function renderProduk(container) {
                 <div class="card" style="animation-delay: ${index * 0.05}s;">
                     <div class="flex items-center justify-between mb-2">
                         <div class="flex items-center gap-2">
-                            <div class="text-3xl">🌼</div>
+                            <div class="text-3xl">🍕</div>
                             <h2 class="text-lg font-semibold text-gray-800">${produk.produk_name}</h2>
                         </div>
                         <span class="category-badge">${produk.produk_kategori}</span>

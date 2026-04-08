@@ -4,7 +4,7 @@ function createHeader() {
 
     const title = document.createElement('h1');
     title.className = 'text-2xl font-bold';
-    title.textContent = '🌸 Kantin Bu Ning 🌸';
+    title.textContent = '🍕 Kantin Bu Ning 🍕';
 
     header.appendChild(title);
     return header;
