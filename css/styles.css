@@ -1,0 +1,81 @@
+body {
+    background-color: #f3f4f6;
+    font-family: sans-serif;
+}
+
+header {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+main {
+    padding: 1rem;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+
+.bottom-nav li {
+    cursor: pointer;
+    text-align: center;
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.home-content h1 {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.home-content p {
+    font-size: 1.125rem;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.profile-photo {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.profile-name {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.edit-profile {
+    display: block;
+    margin: 1rem auto 0;
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+}
