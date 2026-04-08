@@ -7,9 +7,9 @@ function createBottomNav() {
 
     const navItems = [
         { icon: '🏠', label: 'Home', id: 'home' },
-        { icon: '🔍', label: 'Explore', id: 'explore' },
-        { icon: '🔔', label: 'Notifications', id: 'notifications' },
-        { icon: '👤', label: 'Profile', id: 'profile' },
+        { icon: '🤝', label: 'Mitra', id: 'mitra' },
+        { icon: '📦', label: 'Produk', id: 'produk' },
+        { icon: '👤', label: 'Akun', id: 'akun' },
     ];
 
     navItems.forEach(item => {

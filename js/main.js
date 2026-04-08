@@ -2,6 +2,8 @@
 
 import { renderHome } from './pages/home.js';
 import { renderProfile } from './pages/profile.js';
+import { renderMitra } from './pages/mitra.js';
+import { renderProduk } from './pages/produk.js';
 import createHeader from './components/header.js';
 import createBottomNav from './components/bottom-nav.js';
 
@@ -30,8 +32,12 @@ function init() {
 function handleRouting() {
     const hash = window.location.hash;
 
-    if (hash === '#profile') {
+    if (hash === '#akun') {
         renderProfile(mainContentDiv);
+    } else if (hash === '#mitra') {
+        renderMitra(mainContentDiv);
+    } else if (hash === '#produk') {
+        renderProduk(mainContentDiv);
     } else {
         renderHome(mainContentDiv);
     }
