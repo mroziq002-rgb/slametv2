@@ -1,27 +1,46 @@
 function renderProduk(container) {
+    const produkHTML = `
+        <div class="p-4">
+            <h1 class="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent" style="animation: fadeInDown 0.8s ease-out;">Daftar Produk</h1>
+            <div class="space-y-4" id="produk-list"></div>
+        </div>
+    `;
+    
+    container.innerHTML = produkHTML;
+    
     fetch('data/TABEL_PRODUK_rows.json')
         .then(response => response.json())
         .then(data => {
-            const produkHTML = `
-                <div class="p-4">
-                    <h1 class="text-2xl font-bold mb-4">Daftar Produk</h1>
-                    <div class="space-y-4">
-                        ${data.map(produk => `
-                            <div class="bg-white p-4 rounded shadow">
-                                <h2 class="text-lg font-semibold">${produk.produk_name}</h2>
-                                <p class="text-gray-600">Kategori: ${produk.produk_kategori}</p>
-                                <p class="text-sm text-gray-500">Harga: Rp ${produk.produk_price}</p>
-                                <p class="text-sm text-gray-500">Stok: ${produk.produk_stock}</p>
+            const produkList = container.querySelector('#produk-list');
+            const cardsHTML = data.map((produk, index) => `
+                <div class="card" style="animation-delay: ${index * 0.05}s;">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <div class="text-3xl">📦</div>
+                            <h2 class="text-lg font-semibold text-gray-800">${produk.produk_name}</h2>
+                        </div>
+                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">${produk.produk_kategori}</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500">Harga</p>
+                                <p class="font-bold text-green-600 text-lg">Rp ${produk.produk_price}</p>
                             </div>
-                        `).join('')}
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500">Stok</p>
+                                <p class="font-bold text-blue-600">${produk.produk_stock}</p>
+                            </div>
+                        </div>
+                        <button class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105">Beli</button>
                     </div>
                 </div>
-            `;
-            container.innerHTML = produkHTML;
+            `).join('');
+            produkList.innerHTML = cardsHTML;
         })
         .catch(error => {
             console.error('Error loading produk data:', error);
-            container.innerHTML = '<p class="p-4">Error loading produk data.</p>';
+            container.innerHTML = '<p class="p-4 text-red-500">Error loading produk data.</p>';
         });
 }
 

@@ -2,10 +2,27 @@ function renderProfile(container) {
     const profileData = fetchProfileData();
 
     const profileHTML = `
-        <div class="flex flex-col items-center p-4">
-            <img src="${profileData.photo}" alt="Profile Photo" class="w-32 h-32 rounded-full mb-4">
-            <h1 class="text-2xl font-bold mb-2">${profileData.name}</h1>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded">Edit Profile</button>
+        <div class="flex flex-col items-center p-6 pb-24">
+            <img src="${profileData.photo}" alt="Profile Photo" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-blue-600 bg-gray-300" style="animation: fadeInDown 0.8s ease-out;">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2" style="animation: fadeInUp 0.8s ease-out 0.1s backwards;">John Doe</h1>
+            <p class="text-gray-600 mb-6" style="animation: fadeInUp 0.8s ease-out 0.2s backwards;">john@example.com</p>
+            
+            <div class="w-full max-w-sm space-y-4" style="animation: fadeInUp 0.8s ease-out 0.3s backwards;">
+                <div class="bg-white rounded-xl shadow-md p-4 border-l-4 border-l-blue-600">
+                    <p class="text-xs text-gray-500 mb-1">Nama Lengkap</p>
+                    <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-4 border-l-4 border-l-green-600">
+                    <p class="text-xs text-gray-500 mb-1">Email</p>
+                    <p class="text-lg font-semibold text-gray-800">john@example.com</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-4 border-l-4 border-l-purple-600">
+                    <p class="text-xs text-gray-500 mb-1">Nomor Telepon</p>
+                    <p class="text-lg font-semibold text-gray-800">+62 812 3456 7890</p>
+                </div>
+            </div>
+            
+            <button class="w-full max-w-sm bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6" style="animation: fadeInUp 0.8s ease-out 0.4s backwards;">Edit Profil</button>
         </div>
     `;
 
@@ -14,8 +31,8 @@ function renderProfile(container) {
 
 function fetchProfileData() {
     return {
-        photo: 'path/to/profile/photo.jpg', // This should be replaced with actual data from profile.json
-        name: 'John Doe' // This should be replaced with actual data from profile.json
+        photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
+        name: 'John Doe'
     };
 }
 
