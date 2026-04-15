@@ -14,19 +14,25 @@ function renderProduk(container) {
         }
         let url = String(rawUrl).trim();
         url = url.replace(/^[^h]*(https?:\/\/)/, '$1');
-        if (url.startsWith('mhttps://') || url.startsWith('mhttp://')) {
-            url = url.replace(/^m+/, '');
-        }
+        url = url.replace(/^m+/, '');
 
-        const driveMatch = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)\/view/);
-        if (driveMatch) {
-            url = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+        const driveFileMatch = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)\/view/);
+        const driveOpenMatch = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
+        const driveUcMatch = url.match(/https:\/\/drive\.google\.com\/uc\?id=([^&]+)/);
+
+        if (driveFileMatch) {
+            url = `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
+        } else if (driveOpenMatch) {
+            url = `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
+        } else if (driveUcMatch) {
+            url = `https://drive.google.com/uc?export=view&id=${driveUcMatch[1]}`;
         }
 
         return url || 'https://via.placeholder.com/400x240?text=No+Image';
     }
 
-    fetch('./data/TABEL_PRODUK_rows.json')
+    const dataUrl = new URL('../../data/TABEL_PRODUK_rows.json', import.meta.url);
+    fetch(dataUrl)
         .then(response => response.json())
         .then(data => {
             const produkList = container.querySelector('#produk-list');
