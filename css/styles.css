@@ -202,6 +202,14 @@ main::before {
     @apply shadow-xl border-l-pink-600;
 }
 
+.produk-image {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+}
+
 .category-badge {
     @apply bg-gradient-to-r from-pink-200 to-rose-200 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full;
 }

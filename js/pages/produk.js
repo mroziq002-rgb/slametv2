@@ -14,6 +14,7 @@ function renderProduk(container) {
             const produkList = container.querySelector('#produk-list');
             const cardsHTML = data.map((produk, index) => `
                 <div class="card" style="animation-delay: ${index * 0.05}s;">
+                    <img src="${produk.produk_image}" alt="${produk.produk_name}" class="produk-image rounded-xl shadow-sm mb-4 object-cover" onerror="this.src='https://via.placeholder.com/400x240?text=No+Image'" />
                     <div class="flex items-center justify-between mb-2">
                         <div class="flex items-center gap-2">
                             <div class="text-3xl">🍕</div>
