@@ -8,7 +8,8 @@ function renderMitra(container) {
     
     container.innerHTML = mitraHTML;
     
-    fetch('data/TABEL_MITRA_rows.json')
+    const dataUrl = new URL('../../data/TABEL_MITRA_rows.json', import.meta.url);
+    fetch(dataUrl)
         .then(response => response.json())
         .then(data => {
             const mitraList = container.querySelector('#mitra-list');
