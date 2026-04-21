@@ -13,9 +13,23 @@ function renderProduk(container) {
             return 'https://via.placeholder.com/400x240?text=No+Image';
         }
         let url = String(rawUrl).trim();
-        url = url.replace(/^[^h]*(https?:\/\/)/, '$1');
-        url = url.replace(/^m+/, '');
-
+        
+        // Remove any leading non-URL characters and newlines
+        url = url.replace(/^[\s\W]*(https?:\/\/)/, '$1');
+        
+        // Remove duplicate https:// protocols
+        url = url.replace(/https:\/\/https:\/\//g, 'https://');
+        url = url.replace(/^[m:]*https:\/\//g, 'https://');
+        
+        // Handle lh3.googleusercontent.com (Google Drive images)
+        if (url.includes('lh3.googleusercontent.com')) {
+            if (!url.startsWith('https://')) {
+                url = 'https://' + url.replace(/^https?:\/\//, '');
+            }
+            return url;
+        }
+        
+        // Handle Google Drive URLs
         const driveFileMatch = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)\/view/);
         const driveOpenMatch = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
         const driveUcMatch = url.match(/https:\/\/drive\.google\.com\/uc\?id=([^&]+)/);
