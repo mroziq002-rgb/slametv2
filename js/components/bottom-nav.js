@@ -7,14 +7,15 @@ function createBottomNav() {
 
     const navItems = [
         { icon: '🏠', label: 'Home', id: 'home' },
-        { icon: '🍔', label: 'Mitra', id: 'mitra' },
-        { icon: '🍟', label: 'Produk', id: 'produk' },
-        { icon: '🌮', label: 'Akun', id: 'akun' },
+        { icon: '�', label: 'Produk', id: 'produk' },
+        { icon: '🛒', label: 'Keranjang', id: 'keranjang', badge: true },
+        { icon: '📦', label: 'Pesanan', id: 'pesanan' },
+        { icon: '👤', label: 'Akun', id: 'akun' },
     ];
 
     navItems.forEach((item, index) => {
         const navItem = document.createElement('li');
-        navItem.className = 'cursor-pointer text-center text-rose-600 hover:text-pink-600 transition-all duration-300 p-2 rounded-lg hover:bg-pink-100 flex-1';
+        navItem.className = 'cursor-pointer text-center text-rose-600 hover:text-pink-600 transition-all duration-300 p-2 rounded-lg hover:bg-pink-100 flex-1 relative';
         navItem.id = item.id;
         navItem.style.animation = `fadeInUp 0.8s ease-out ${0.1 * index}s backwards`;
 
@@ -28,6 +29,13 @@ function createBottomNav() {
 
         navItem.appendChild(icon);
         navItem.appendChild(label);
+
+        // Add badge for cart
+        if (item.badge) {
+            const badge = document.createElement('span');
+            badge.className = 'cart-badge hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center';
+            navItem.appendChild(badge);
+        }
         
         navItem.addEventListener('mouseenter', () => {
             navItem.style.transform = 'scale(1.1)';

@@ -49,6 +49,17 @@
     }
 }
 
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 body {
     @apply bg-gradient-to-b from-pink-50 via-rose-50 to-pink-100 font-sans;
     background-image: 
@@ -304,4 +315,38 @@ main::before {
 /* No Results Message */
 #no-results {
     @apply text-center p-6 rounded-xl bg-gradient-to-br from-pink-50 to-rose-50;
+}
+
+/* Modal Styles */
+.animate-slideUp {
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Cart Badge */
+.cart-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-badge.hidden {
+    display: none;
+}
+
+/* Quantity Input Styles */
+.qty-btn-minus, .qty-btn-plus {
+    @apply bg-pink-200 text-pink-600 w-8 h-8 rounded text-sm font-bold cursor-pointer transition-all hover:bg-pink-300;
+}
+
+.qty-input {
+    @apply w-12 text-center px-2 py-1 border-2 border-pink-300 rounded;
+}
+
+/* Order Modal */
+#order-modal {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end;
+}
+
+#order-modal.hidden {
+    display: none;
 }

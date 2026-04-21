@@ -4,8 +4,11 @@ import { renderHome } from './pages/home.js';
 import { renderProfile } from './pages/profile.js';
 import { renderMitra } from './pages/mitra.js';
 import { renderProduk } from './pages/produk.js';
+import { renderCart } from './pages/cart.js';
+import { renderOrder } from './pages/order.js';
 import createHeader from './components/header.js';
 import createBottomNav from './components/bottom-nav.js';
+import { cart } from './utils/cart.js';
 
 const app = document.getElementById('app');
 const headerDiv = document.getElementById('header');
@@ -25,8 +28,25 @@ function init() {
         });
     });
 
+    // Update cart badge
+    updateCartBadge();
+    window.addEventListener('storage', updateCartBadge);
+
     window.addEventListener('hashchange', handleRouting);
     handleRouting();
+}
+
+function updateCartBadge() {
+    const cartBadge = bottomNavDiv.querySelector('.cart-badge');
+    const itemCount = cart.getItemCount();
+    if (cartBadge) {
+        if (itemCount > 0) {
+            cartBadge.textContent = itemCount;
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
+        }
+    }
 }
 
 function handleRouting() {
@@ -38,6 +58,10 @@ function handleRouting() {
         renderMitra(mainContentDiv);
     } else if (hash === '#produk') {
         renderProduk(mainContentDiv);
+    } else if (hash === '#keranjang') {
+        renderCart(mainContentDiv);
+    } else if (hash === '#pesanan') {
+        renderOrder(mainContentDiv);
     } else {
         renderHome(mainContentDiv);
     }
