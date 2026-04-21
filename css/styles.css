@@ -269,3 +269,39 @@ main::before {
 .flower-decoration.delay-3 {
     animation-delay: 2s;
 }
+
+/* Search Input Styles */
+#search-input {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-pink-300 text-gray-800;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    @apply border-pink-500 ring-2 ring-pink-200;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+}
+
+#search-input::placeholder {
+    @apply text-gray-400;
+}
+
+/* Category Filter Button Styles */
+.category-filter-btn {
+    @apply px-4 py-2 rounded-lg font-semibold text-gray-700 transition-all duration-300 border-2 border-transparent;
+    background-color: #f3e8f3;
+    cursor: pointer;
+}
+
+.category-filter-btn:hover {
+    @apply bg-pink-100 text-pink-700 border-pink-300;
+}
+
+.category-filter-btn.active {
+    @apply bg-gradient-to-r from-pink-500 to-rose-500 text-white border-pink-500;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+}
+
+/* No Results Message */
+#no-results {
+    @apply text-center p-6 rounded-xl bg-gradient-to-br from-pink-50 to-rose-50;
+}
