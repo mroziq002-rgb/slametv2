@@ -1,0 +1,79 @@
+[
+    {
+        "idx": 0,
+        "mitra_id": 1,
+        "produk_id": 1,
+        "produk_name": "pop ice",
+        "produkprice": 4000,
+        "product_stock": 10,
+        "product_category": "minuman",
+        "product_image": "https://drive.google.com/file/d/1XdOyAath8dmhniufsThbur8pfCI6hF1B/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2 "
+    },
+    {
+        "idx": 1,
+        "mitra_id": 1,
+        "produk_id": 2,
+        "produk_name": "milkita ",
+        "produkprice": 1000,
+        "product_stock": 10,
+        "product_category": "minuman ",
+        "product_image": "https://drive.google.com/file/d/1vZo19AmowUbAZEzFkH-zZxeEZ0iI8pgB/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2"
+    },
+    {
+        "idx": 2,
+        "mitra_id": 1,
+        "produk_id": 3,
+        "produk_name": "frisian flag ",
+        "produkprice": 7000,
+        "product_stock": 10,
+        "product_category": "minuman ",
+        "product_image": "https://drive.google.com/file/d/1D4YHk-iCOqfjCdDFYqtPHh00CV7Wip6d/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2"
+    },
+    {
+        "idx": 3,
+        "mitra_id": 1,
+        "produk_id": 4,
+        "produk_name": "jasmine tea",
+        "produkprice": 4000,
+        "product_stock": 25,
+        "product_category": "minuman ",
+        "product_image": "https://drive.google.com/file/d/14cZNMJgtkjG7SlSg-Ofl8tI9uqSTfjR1/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2"
+    },
+    {
+        "idx": 4,
+        "mitra_id": 1,
+        "produk_id": 5,
+        "produk_name": "es wawan",
+        "produkprice": 2500,
+        "product_stock": 20,
+        "product_category": "minuman",
+        "product_image": "https://drive.google.com/file/d/1vpebdj-hBbiuMEYzW234KUSx0mO1tX3u/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2 sda"
+    },
+    {
+        "idx": 5,
+        "mitra_id": 1,
+        "produk_id": 6,
+        "produk_name": "dancow",
+        "produkprice": 7500,
+        "product_stock": 20,
+        "product_category": "minuman",
+        "product_image": "https://drive.google.com/file/d/1D7eYyw1vBD_kpVAsPSjGgyJ233QsmJ2i/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2 sda"
+    },
+    {
+        "idx": 6,
+        "mitra_id": 1,
+        "produk_id": 7,
+        "produk_name": "jus jambu",
+        "produkprice": 8000,
+        "product_stock": 5,
+        "product_category": "minuman",
+        "product_image": "https://drive.google.com/file/d/1r0Rx11PZbc3_Ne2LH1f9W_iipaI1ONCz/view?usp=drive_link",
+        "sekolah": "sma hang tuah 2 sda"
+    }
+]

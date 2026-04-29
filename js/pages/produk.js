@@ -3,16 +3,20 @@ function renderProduk(container) {
     import('../utils/favorites.js').then(({ favorites }) => {
         const produkHTML = `
             <div class="p-4 pb-24">
-                <h1 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent" style="animation: fadeInDown 0.8s ease-out;">🍟 Daftar Produk 🍟</h1>
+                <div class="flex items-center gap-3 mb-6" style="animation: fadeInDown 0.8s ease-out;">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Logo" class="h-10 w-10">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Daftar Produk</h1>
+                </div>
                 
                 <!-- Search Bar -->
-                <div class="mb-6" style="animation: fadeInUp 0.8s ease-out 0.1s backwards;">
+                <div class="mb-6 relative flex items-center" style="animation: fadeInUp 0.8s ease-out 0.1s backwards;">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Logo" class="absolute left-4 h-6 w-6">
                     <input 
                         type="text" 
                         id="search-input" 
-                        placeholder="🔍 Cari makanan atau minuman..." 
-                        class="w-full px-4 py-3 rounded-lg border-2 border-pink-300 focus:outline-none focus:border-pink-500 text-gray-800"
-                        style="box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1);"
+                        placeholder="Cari makanan atau minuman..." 
+                        class="w-full pl-12 pr-4 py-3 rounded-lg border-2 border-blue-300 focus:outline-none focus:border-blue-500 text-gray-800"
+                        style="box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);"
                     />
                 </div>
 
@@ -105,22 +109,23 @@ function renderProduk(container) {
         return url || 'https://via.placeholder.com/400x240?text=No+Image';
     }
 
-    const dataUrl = new URL('../../data/TABEL_PRODUK_rows.json', import.meta.url);
     let allProducts = [];
     let currentFilter = 'SEMUA';
     let selectedProduct = null;
 
-    fetch(dataUrl)
-        .then(response => response.json())
-        .then(data => {
-            allProducts = data;
-            displayProducts(allProducts);
-            setupSearchAndFilter();
-        })
-        .catch(error => {
-            console.error('Error loading produk data:', error);
-            container.innerHTML = '<p class="p-4 text-red-500">⚠️ Error loading produk data.</p>';
-        });
+    // Fetch products from Supabase
+    import('../utils/supabase.js').then(({ fetchAllProduk }) => {
+        fetchAllProduk()
+            .then(data => {
+                allProducts = data;
+                displayProducts(allProducts);
+                setupSearchAndFilter();
+            })
+            .catch(error => {
+                console.error('Error loading produk data:', error);
+                container.innerHTML = '<p class="p-4 text-red-500">⚠️ Error loading produk data.</p>';
+            });
+    });
 
     function displayProducts(products) {
         const produkList = container.querySelector('#produk-list');
@@ -134,7 +139,7 @@ function renderProduk(container) {
 
         noResults.classList.add('hidden');
         const cardsHTML = products.map((produk, index) => {
-            const imageUrl = normalizeImageUrl(produk.produk_image);
+            const imageUrl = produk.produk_image;
             const isFavorited = favorites.isFavorite(produk.produk_id);
             return `
                 <div class="card" style="animation-delay: ${index * 0.05}s;" data-produk-id="${produk.produk_id}">
@@ -188,7 +193,7 @@ function renderProduk(container) {
     function openOrderModal(produk) {
         selectedProduct = produk;
         const modal = container.querySelector('#order-modal');
-        const imageUrl = normalizeImageUrl(produk.produk_image);
+        const imageUrl = produk.produk_image;
         
         const modalContent = container.querySelector('#modal-content');
         modalContent.innerHTML = `

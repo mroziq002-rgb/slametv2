@@ -7,29 +7,29 @@ function renderMitra(container) {
     `;
     
     container.innerHTML = mitraHTML;
-    
-    const dataUrl = new URL('../../data/TABEL_MITRA_rows.json', import.meta.url);
-    fetch(dataUrl)
-        .then(response => response.json())
-        .then(data => {
-            const mitraList = container.querySelector('#mitra-list');
-            const cardsHTML = data.map((mitra, index) => `
-                <div class="card" style="animation-delay: ${index * 0.1}s;">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="text-3xl">🍜</div>
-                        <h2 class="text-lg font-semibold text-gray-800">${mitra.mitra_name}</h2>
+    // Fetch mitra data from Supabase
+    import('../utils/supabase.js').then(({ fetchMitra }) => {
+        fetchMitra()
+            .then(data => {
+                const mitraList = container.querySelector('#mitra-list');
+                const cardsHTML = data.map((mitra, index) => `
+                    <div class="card" style="animation-delay: ${index * 0.1}s;">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="text-3xl">🍜</div>
+                            <h2 class="text-lg font-semibold text-gray-800">bu rasyid</h2>
+                        </div>
+                        <p class="text-gray-600 mb-2 text-sm">📍 ${mitra.address_owner}</p>
+                        <p class="text-sm text-pink-600 font-medium">💌 ${mitra.email_owner}</p>
+                        <p class="text-xs text-gray-500 mt-2">🏷️ ${mitra.kategori}</p>
                     </div>
-                    <p class="text-gray-600 mb-2 text-sm">📍 ${mitra.address_owner}</p>
-                    <p class="text-sm text-pink-600 font-medium">💌 ${mitra.email_owner}</p>
-                    <p class="text-xs text-gray-500 mt-2">🏷️ ${mitra.kategori}</p>
-                </div>
-            `).join('');
-            mitraList.innerHTML = cardsHTML;
-        })
-        .catch(error => {
-            console.error('Error loading mitra data:', error);
-            container.innerHTML = '<p class="p-4 text-red-500">⚠️ Error loading mitra data.</p>';
-        });
+                `).join('');
+                mitraList.innerHTML = cardsHTML;
+            })
+            .catch(error => {
+                console.error('Error loading mitra data:', error);
+                container.innerHTML = '<p class="p-4 text-red-500">⚠️ Error loading mitra data.</p>';
+            });
+    });
 }
 
 export { renderMitra };

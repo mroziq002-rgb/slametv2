@@ -38,36 +38,7 @@ function renderFavorites(container) {
     container.innerHTML = favoritesHTML;
     displayFavorites();
 
-    function normalizeImageUrl(rawUrl) {
-        if (!rawUrl) {
-            return 'https://via.placeholder.com/400x240?text=No+Image';
-        }
-        let url = String(rawUrl).trim();
-        url = url.replace(/^[\s\W]*(https?:\/\/)/, '$1');
-        url = url.replace(/https:\/\/https:\/\//g, 'https://');
-        url = url.replace(/^[m:]*https:\/\//g, 'https://');
 
-        if (url.includes('lh3.googleusercontent.com')) {
-            if (!url.startsWith('https://')) {
-                url = 'https://' + url.replace(/^https?:\/\//, '');
-            }
-            return url;
-        }
-
-        const driveFileMatch = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^/]+)\/view/);
-        const driveOpenMatch = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
-        const driveUcMatch = url.match(/https:\/\/drive\.google\.com\/uc\?id=([^&]+)/);
-
-        if (driveFileMatch) {
-            url = `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
-        } else if (driveOpenMatch) {
-            url = `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
-        } else if (driveUcMatch) {
-            url = `https://drive.google.com/uc?export=view&id=${driveUcMatch[1]}`;
-        }
-
-        return url || 'https://via.placeholder.com/400x240?text=No+Image';
-    }
 
     function displayFavorites() {
         const favoritesContent = container.querySelector('#favorites-content');
@@ -87,7 +58,7 @@ function renderFavorites(container) {
         }
 
         const cardsHTML = favorites.items.map((produk, index) => {
-            const imageUrl = normalizeImageUrl(produk.produk_image);
+            const imageUrl = produk.produk_image;
             return `
                 <div class="card" style="animation-delay: ${index * 0.05}s;" data-produk-id="${produk.produk_id}">
                     <div class="relative mb-4">
@@ -160,7 +131,7 @@ function renderFavorites(container) {
     function openOrderModal(produk) {
         selectedProduct = produk;
         const modal = container.querySelector('#order-modal');
-        const imageUrl = normalizeImageUrl(produk.produk_image);
+        const imageUrl = produk.produk_image;
         
         const modalContent = container.querySelector('#modal-content');
         modalContent.innerHTML = `
