@@ -44,20 +44,40 @@ function getLocalImage(productName, category) {
     }
 }
 
+// Local JSON fallback paths (relative to index.html)
+const LOCAL_JSON = {
+    'tabel_mitra': 'data/TABEL_MITRA_rows.json',
+    'tabelproduk_makanan': 'data/TABEL_PRODUK_MAKANAN_rows.json',
+    'tabelproduk_minuman': 'data/TABEL_PRODUK_MINUMAN_rows.json'
+};
+
 /**
- * Fetch all rows from a Supabase table
+ * Fetch local JSON file as fallback
+ */
+async function fetchLocalJSON(tableName) {
+    const path = LOCAL_JSON[tableName];
+    if (!path) throw new Error(`No local data for table: ${tableName}`);
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`Failed to load local file: ${path}`);
+    return response.json();
+}
+
+/**
+ * Fetch all rows from a Supabase table, with local JSON fallback
  */
 export async function fetchTable(tableName, select = '*') {
-    const url = `${SUPABASE_URL}/rest/v1/${encodeURIComponent(tableName)}?select=${select}`;
-
-    const response = await fetch(url, { headers: HEADERS });
-
-    if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(`Supabase error (${response.status}): ${errorBody}`);
+    try {
+        const url = `${SUPABASE_URL}/rest/v1/${encodeURIComponent(tableName)}?select=${select}`;
+        const response = await fetch(url, { headers: HEADERS });
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Supabase error (${response.status}): ${errorBody}`);
+        }
+        return response.json();
+    } catch (err) {
+        console.warn(`Supabase fetch failed for ${tableName}, using local JSON fallback:`, err.message);
+        return fetchLocalJSON(tableName);
     }
-
-    return response.json();
 }
 
 /**

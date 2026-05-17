@@ -5,7 +5,7 @@ function renderMitra(container) {
             <div class="space-y-4" id="mitra-list"></div>
         </div>
     `;
-    
+
     container.innerHTML = mitraHTML;
     // Fetch mitra data from Supabase
     import('../utils/supabase.js').then(({ fetchMitra }) => {
@@ -16,11 +16,15 @@ function renderMitra(container) {
                     <div class="card" style="animation-delay: ${index * 0.1}s;">
                         <div class="flex items-center gap-3 mb-2">
                             <div class="text-3xl">🍜</div>
-                            <h2 class="text-lg font-semibold text-gray-800">bu rasyid</h2>
+                            <div>
+                                <h2 class="text-lg font-semibold text-gray-800">${mitra.mitra_name}</h2>
+                                <p class="text-xs text-gray-500">👤 ${mitra.owner_name}</p>
+                            </div>
                         </div>
                         <p class="text-gray-600 mb-2 text-sm">📍 ${mitra.address_owner}</p>
                         <p class="text-sm text-pink-600 font-medium">💌 ${mitra.email_owner}</p>
-                        <p class="text-xs text-gray-500 mt-2">🏷️ ${mitra.kategori}</p>
+                        <p class="text-xs text-gray-500 mt-1">🏷️ ${mitra.kategori}</p>
+                        <p class="text-xs text-gray-500 mt-1">🏫 ${mitra.sekolah || '-'}</p>
                     </div>
                 `).join('');
                 mitraList.innerHTML = cardsHTML;
